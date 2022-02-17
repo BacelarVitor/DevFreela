@@ -1,7 +1,21 @@
+using DevFreela.Core.Enums;
+
 namespace DevFreela.Core.Entities
 {
     public class Project : BaseEntitiy
     {
+        public Project(string title, string description, int idClient, int idFreelancer, decimal? totalCost)
+        {
+            Title = title;
+            Description = description;
+            IdClient = idClient;
+            IdFreelancer = idFreelancer;
+            TotalCost = totalCost;
+
+            Status = ProjectStatusEnum.Created;
+            Comments = new List<ProjectComment>();
+        }
+
         public string Title { get; private set; }
         public string Description { get; private set; }
         public int IdClient { get; private set; }

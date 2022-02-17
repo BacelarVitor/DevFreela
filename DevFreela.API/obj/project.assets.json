@@ -224,32 +224,34 @@
     ]
   },
   "packageFolders": {
-    "/Users/bacelar/.nuget/packages/": {}
+    "C:\\Users\\vitor\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.API/DevFreela.API.csproj",
+      "projectUniqueName": "C:\\Users\\vitor\\projects\\DevFreela\\DevFreela.API\\DevFreela.API.csproj",
       "projectName": "DevFreela.API",
-      "projectPath": "/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.API/DevFreela.API.csproj",
-      "packagesPath": "/Users/bacelar/.nuget/packages/",
-      "outputPath": "/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.API/obj/",
+      "projectPath": "C:\\Users\\vitor\\projects\\DevFreela\\DevFreela.API\\DevFreela.API.csproj",
+      "packagesPath": "C:\\Users\\vitor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vitor\\projects\\DevFreela\\DevFreela.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/bacelar/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\vitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/DevFreela.Core.csproj": {
-              "projectPath": "/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/DevFreela.Core.csproj"
+            "C:\\Users\\vitor\\projects\\DevFreela\\DevFreela.Core\\DevFreela.Core.csproj": {
+              "projectPath": "C:\\Users\\vitor\\projects\\DevFreela\\DevFreela.Core\\DevFreela.Core.csproj"
             }
           }
         }
@@ -287,7 +289,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
