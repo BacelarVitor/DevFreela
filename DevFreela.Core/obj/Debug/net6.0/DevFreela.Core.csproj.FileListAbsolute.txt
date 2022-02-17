@@ -1,0 +1,12 @@
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/bin/Debug/net6.0/DevFreela.Core.deps.json
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/bin/Debug/net6.0/DevFreela.Core.dll
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/bin/Debug/net6.0/ref/DevFreela.Core.dll
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/bin/Debug/net6.0/DevFreela.Core.pdb
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/obj/Debug/net6.0/DevFreela.Core.csproj.AssemblyReference.cache
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/obj/Debug/net6.0/DevFreela.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/obj/Debug/net6.0/DevFreela.Core.AssemblyInfoInputs.cache
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/obj/Debug/net6.0/DevFreela.Core.AssemblyInfo.cs
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/obj/Debug/net6.0/DevFreela.Core.csproj.CoreCompileInputs.cache
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/obj/Debug/net6.0/DevFreela.Core.dll
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/obj/Debug/net6.0/ref/DevFreela.Core.dll
+/Users/bacelar/Documents/Projects/Personal/DevFreela/DevFreela.Core/obj/Debug/net6.0/DevFreela.Core.pdb
