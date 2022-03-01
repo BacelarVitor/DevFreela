@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Core.Entities
 {
-    public class Skill : BaseEntitiy
+    public class Skill : BaseEntity
     {
         public Skill(string description)
         {

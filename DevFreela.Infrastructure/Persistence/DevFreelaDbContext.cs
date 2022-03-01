@@ -1,34 +1,54 @@
 ﻿using DevFreela.Core.Entities;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace DevFreela.Infrastructure.Persistence
 {
-    public class DevFreelaDbContext
+    public class DevFreelaDbContext : DbContext
     {
-        public DevFreelaDbContext()
+        public DevFreelaDbContext(DbContextOptions<DevFreelaDbContext> options) : base(options) { }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<UserSkill> UserSkills { get; set; }
+        public DbSet<ProjectComment> ProjectComments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Projects = new List<Project>() 
-            {
-                new Project("Help Me Rent", "Project that aims to help people find a place to live in a exchange program.", 1, 1, 10000m), 
-                new Project("Get the money", "Project that aims to help people to save the necessary amount to make an exchange program.", 1, 1, 15000m),
-                new Project("Let's bet", "Project for two friends make bets between than in a fairly and secure way", 1, 1, 35000m),
-            };
-
-            Users = new List<User>()
-            {
-                new User("Vitor", "Bacelar de Paula Augusto", "vitor.bacelar@protonmail.com" ,new DateTime(1997, 04, 10)),
-                new User("Matheus", "Ribeiro", "ribeiro.horse@protonmail.com", new DateTime(1998, 04, 13)),
-                new User("Wellisther", "Nunes", "taldo.sther@protonmail.com", new DateTime(2000, 03, 15)),
-            };
-
-            Skills = new List<Skill>()
-            {
-                new Skill(".Net Core"),
-                new Skill("Angular 2+"),
-                new Skill("C#"),
-            };
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-        public IList<Project> Projects { get; set; }
-        public IList<User> Users { get; set; }
-        public IList<Skill> Skills { get; set; }
+
+        public override int SaveChanges()
+        {
+            AddTimestamps();
+            return base.SaveChanges();
+        }
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            AddTimestamps();
+            return await base.SaveChangesAsync();
+        }
+
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            AddTimestamps();
+            return await base.SaveChangesAsync();
+        }
+
+        private void AddTimestamps()
+        {
+            var entities = ChangeTracker.Entries()
+                .Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
+
+            foreach (var entity in entities)
+            {
+                var now = DateTime.UtcNow;
+
+                if (entity.State == EntityState.Added)
+                    ((BaseEntity)entity.Entity).CreatedAt = now;
+
+                ((BaseEntity)entity.Entity).UpdatedAt = now;
+            }
+        }
     }
 }

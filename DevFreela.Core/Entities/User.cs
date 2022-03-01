@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Core.Entities
 {
-    public class User : BaseEntitiy
+    public class User : BaseEntity
     {
         public User(string fistName, string lastName, string email, DateTime birthDate)
         {
@@ -22,10 +22,10 @@ namespace DevFreela.Core.Entities
         public string LastName { get; private set; }
         public string Email { get; private set; }
         public DateTime BirthDate { get; private set; }
-        public Boolean Active { get; private set; }
+        public bool Active { get; private set; }
         public IList<UserSkill> Skills { get; private set; }
         public IList<Project> OwnedProjects { get; private set; }
         public IList<Project> FreelanceProjects { get; private set; }
-
+        public IList<ProjectComment> Comments { get; set; }
     }
 }

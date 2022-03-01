@@ -1,11 +1,19 @@
-var builder = WebApplication.CreateBuilder(args);
+using DevFreela.Application.Services.Implementations;
+using DevFreela.Application.Services.Interfaces;
+using DevFreela.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+const string DevFreelaCs = "DevFreelaCs";
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer()
+                .AddSwaggerGen()
+                .AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(DevFreelaCs)))
+                .AddScoped<IProjectService, ProjectService>()
+                .AddScoped<ISkillService, SkillService>();
 
 var app = builder.Build();
 

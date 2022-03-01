@@ -2,7 +2,7 @@ using DevFreela.Core.Enums;
 
 namespace DevFreela.Core.Entities
 {
-    public class Project : BaseEntitiy
+    public class Project : BaseEntity
     {
         public Project(string title, string description, int idClient, int idFreelancer, decimal? totalCost)
         {
@@ -19,11 +19,46 @@ namespace DevFreela.Core.Entities
         public string Title { get; private set; }
         public string Description { get; private set; }
         public int IdClient { get; private set; }
+        public User Client { get; private set; }
         public int IdFreelancer { get; private set; }
+        public User Freelancer { get; private set; }
         public decimal? TotalCost { get; private set; }
         public DateTime? StartedAt { get; private set; }
         public DateTime? FinishedAt { get; private set; }
         public ProjectStatusEnum Status { get; private set; }
         public IList<ProjectComment> Comments { get; private set; }
+
+        public void Start()
+        {
+            var canStart = new ProjectStatusEnum[] { ProjectStatusEnum.Created, ProjectStatusEnum.Suspended };
+            if (canStart.Contains(Status))
+            {
+                Status = ProjectStatusEnum.InProgress;
+                StartedAt = DateTime.Now;
+            }
+        }
+
+        public void Cancel()
+        {
+            var canCancel = new ProjectStatusEnum[] { ProjectStatusEnum.Created, ProjectStatusEnum.InProgress, ProjectStatusEnum.Suspended };
+            if (canCancel.Contains(Status))
+                Status = ProjectStatusEnum.Cancelled;
+        }
+
+        public void Finish()
+        {
+            if (Status == ProjectStatusEnum.InProgress)
+            {
+                Status = ProjectStatusEnum.Finished;
+                FinishedAt = DateTime.Now;
+            }
+        }
+
+        public void Update(string title, string description, decimal? totalCost)
+        {
+            Title = title;
+            Description = description;
+            TotalCost = totalCost;
+        }
     }
 }
