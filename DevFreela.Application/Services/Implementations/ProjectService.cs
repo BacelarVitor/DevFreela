@@ -1,17 +1,23 @@
-﻿using DevFreela.Application.InputModels;
+﻿using Dapper;
+using DevFreela.Application.InputModels;
 using DevFreela.Application.Services.Interfaces;
 using DevFreela.Application.ViewModels;
 using DevFreela.Core.Entities;
 using DevFreela.Infrastructure.Persistence;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace DevFreela.Application.Services.Implementations
 {
     public class ProjectService : IProjectService
     {
         private readonly DevFreelaDbContext _dbContext;
-        public ProjectService(DevFreelaDbContext dbContext)
+        private const string DevFreelaCs = "DevFreelaCs";
+        private readonly string _connectionString;
+        public ProjectService(DevFreelaDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;
+            _connectionString = configuration.GetConnectionString(DevFreelaCs);
         }
 
         public int Create(NewProjectInputModel inputModel)
@@ -75,9 +81,14 @@ namespace DevFreela.Application.Services.Implementations
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == inputModel.Id);
             if(project is not null)
+            {
                 project?.Update(inputModel.Title, inputModel.Description, inputModel.TotalCost);
+                using var sqlConnection = new SqlConnection(_connectionString);
+                sqlConnection.Open();
+                var sql = @"UPDATE Projects SET Title = @Title, Description = @Description, TotalCost = @TotalCost, UpdatedAt = GETDATE() WHERE Id = @Id";
+                sqlConnection.Execute(sql, new { Title = project?.Title, Description = project?.Description, TotalCost = project?.TotalCost, Id = project?.Id });
+            }
 
-            _dbContext.SaveChanges();
         }
     }
 }
