@@ -21,12 +21,12 @@ namespace DevFreela.Infrastructure.Persistence.Configurations
                 .HasDefaultValue(true);
 
             builder
-                .Property(u => u.FistName)
+                .Property(u => u.FullName)
                 .IsRequired()
                 .HasMaxLength(150);
 
             builder
-                .Property(u => u.LastName)
+                .Property(u => u.FullName)
                 .IsRequired()
                 .HasMaxLength(500);
 
