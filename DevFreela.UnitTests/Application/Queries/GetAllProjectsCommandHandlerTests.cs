@@ -23,17 +23,21 @@ namespace DevFreela.UnitTests.Application.Queries
                 new Project("Test 3", "Desc test 3", 3, 2, 980.0m),
             };
 
-            var projectRepository = new Mock<IProjectRepository>();
-            projectRepository.Setup(pr => pr.GetAllAsync().Result).Returns(projects);
+            var projectRepositoryMock = new Mock<IProjectRepository>();
+            projectRepositoryMock.Setup(pr => pr.GetAllAsync().Result).Returns(projects);
 
             var getAllProjectsQuery = new GetAllProjectsQuery(string.Empty);
-            var getAllProjectsQueryHandler = new GetAllProjectsQueryHandler(projectRepository.Object);
+            var getAllProjectsQueryHandler = new GetAllProjectsQueryHandler(projectRepositoryMock.Object);
 
             //Act
             var projectViewModeList = await getAllProjectsQueryHandler.Handle(getAllProjectsQuery, new CancellationToken());
 
             //Asset
-            Assert.Equal(3, projectViewModeList.Count);
+            Assert.NotNull(projectViewModeList);
+            Assert.NotEmpty(projectViewModeList);
+            Assert.Equal(projects.Count, projectViewModeList.Count);
+
+            projectRepositoryMock.Verify(pr => pr.GetAllAsync().Result, Times.Once);
         }
     }
 }
