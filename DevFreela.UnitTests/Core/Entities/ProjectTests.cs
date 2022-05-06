@@ -9,13 +9,16 @@ namespace DevFreela.UnitTests.Core.Entities
         [Fact]
         public void TestIfProjectStartWorks()
         {
+            // Arrange
             var project = new Project("Test", "Desc de test", 1, 2, 190.0m);
-            Assert.Equal(ProjectStatusEnum.Created, project.Status);
-            Assert.Null(project.StartedAt);
+
+            // Act
             project.Start();
 
+            //Assert 
             Assert.Equal(ProjectStatusEnum.InProgress, project.Status);
             Assert.NotNull(project.StartedAt);
+
         }
     }
 }
