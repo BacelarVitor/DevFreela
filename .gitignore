@@ -367,7 +367,24 @@ FodyWeavers.xsd
 ##
 ## Visual studio for Mac
 ##
-
+.chache
+*.cache
+bin/
+obj/
+bin/*
+obj/*
+*/obj
+*/bin
+*.cache
+bin
+obj
+bin/*
+obj/*
+*/obj
+*/bin
+*.cache
+bin
+obj
 
 # globs
 Makefile.in
@@ -452,8 +469,3 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-bin/*
-obj/*
-*/obj
-*/bin
-*.cache
